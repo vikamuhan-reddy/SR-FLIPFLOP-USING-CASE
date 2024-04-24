@@ -34,15 +34,47 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 
 **Procedure**
 
-/* write all the steps invloved */
+1. Create a Verilog module
+2. Define the Flip-flop Logic
+3. Synchronous Behavior
+4. Functional Table Validation
+5. Testbench
 
 **PROGRAM**
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
-*/
+```c
+/* Program for flipflops and verify its truth table in quartus using Verilog programming. 
+Developed by:Vikamuhan reddy.N
+S RegisterNumber: 212223240181 */
 
+module ex06(q,q_bar,s,r,clk,reset);
+//SR Flip Flop Behavioural Level using "case"
+input s,r,clk,reset;
+output reg q;
+output q_bar;
+always@(posedge clk)begin //for synchronous reset
+if (!reset) q<=0;
+else
+begin
+case({s,r})
+2'b00:q<=q;//no change
+2'b01:q<=1'b0; //write logic for reset
+2'b10:q<=1'b1; //write logic for set
+2'b11:q<=1'bx; //write logic for Invalid state
+endcase
+end
+end
+assign q_bar=~q;
+endmodule
+```
 **RTL LOGIC FOR FLIPFLOPS**
+![image](https://github.com/vikamuhan-reddy/SR-FLIPFLOP-USING-CASE/assets/144928933/d661c4d9-adcd-4811-967e-5dc153f3eb58)
+
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
+![image](https://github.com/vikamuhan-reddy/SR-FLIPFLOP-USING-CASE/assets/144928933/4c0d0e78-6b12-42e0-aa6f-cda12dd2d729)
 
-**RESULTS**
+
+**RESULT**
+
+Thus the program to implement a SR flipflop using verilog and validating their functionality using their functional tables is successfully completed.
